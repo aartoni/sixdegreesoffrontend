@@ -5,7 +5,7 @@ A standalone frontend for "Six Degrees of" projects, forked from [Six Degrees of
 ## Changes
 
 - environment variables support;
-    - automatic substitution in HTML files;
+    - automatic substitution in the [web app manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) and HTML files;
 - Google Analytics removed;
 
 ## Contributing
