@@ -4,6 +4,8 @@ A standalone frontend for "Six Degrees of" projects, forked from [Six Degrees of
 
 ## Changes
 
+- environment variables support;
+    - automatic substitution in HTML files;
 - Google Analytics removed;
 
 ## Contributing
