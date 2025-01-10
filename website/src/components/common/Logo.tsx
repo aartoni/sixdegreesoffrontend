@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import logo from '../../images/logo.png';
 import logo2x from '../../images/logo@2x.png';
+import { TOPIC } from '../../resources/constants';
 
 const LogoImg = styled.img`
   width: 460px;
@@ -29,7 +30,7 @@ export const Logo: React.FC<{
       srcSet={`${logo} 462w, ${logo2x} 924w`}
       sizes="(max-width: 600px) 280px, 800px"
       src={logo2x}
-      alt="Six Degrees of Wikipedia Logo"
+      alt={`Six Degrees of ${TOPIC} Logo`}
     />
   </Link>
 );

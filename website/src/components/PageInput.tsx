@@ -6,7 +6,7 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import Autosuggest from 'react-autosuggest';
 import styled from 'styled-components';
 
-import {SDOW_USER_AGENT, WIKIPEDIA_API_URL} from '../resources/constants';
+import {USER_AGENT, THIRD_PARTY_API_URL} from '../resources/constants';
 import {WikipediaPage} from '../types';
 import {getRandomPageTitle} from '../utils';
 import {PageInputSuggestion} from './PageInputSuggestion';
@@ -118,7 +118,7 @@ export const PageInput: React.FC<{
   }, [setPlaceholderText, title]);
 
   const loadSuggestions = useCallback(async (query: string) => {
-    const url = new URL(WIKIPEDIA_API_URL);
+    const url = new URL(THIRD_PARTY_API_URL);
     url.search = new URLSearchParams({
       action: 'query',
       format: 'json',
@@ -140,7 +140,7 @@ export const PageInput: React.FC<{
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Api-User-Agent': SDOW_USER_AGENT,
+          'Api-User-Agent': USER_AGENT,
         },
       });
 

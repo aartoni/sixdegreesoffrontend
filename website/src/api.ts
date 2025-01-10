@@ -1,4 +1,4 @@
-import {SDOW_API_URL} from './resources/constants';
+import {API_URL} from './resources/constants';
 import {
   ShortestPathsApiResponse,
   ShortestPathsErrorResponse,
@@ -22,7 +22,7 @@ export async function fetchShortestPaths({
   readonly sourcePageTitle: string;
   readonly targetPageTitle: string;
 }): Promise<FetchShortestPathsResponse> {
-  const response = await fetch(`${SDOW_API_URL}/paths`, {
+  const response = await fetch(`${API_URL}/paths`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
