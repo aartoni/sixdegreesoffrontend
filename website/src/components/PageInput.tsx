@@ -6,7 +6,7 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import Autosuggest from 'react-autosuggest';
 import styled from 'styled-components';
 
-import {USER_AGENT, THIRD_PARTY_API_URL} from '../resources/constants';
+import {THIRD_PARTY_API_URL, USER_AGENT} from '../resources/constants';
 import {WikipediaPage} from '../types';
 import {getRandomPageTitle} from '../utils';
 import {PageInputSuggestion} from './PageInputSuggestion';

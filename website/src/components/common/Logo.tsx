@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import logo from '../../images/logo.png';
 import logo2x from '../../images/logo@2x.png';
-import { TOPIC } from '../../resources/constants';
+import {TOPIC} from '../../resources/constants';
 
 const LogoImg = styled.img`
   width: 460px;
