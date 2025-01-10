@@ -2,6 +2,27 @@
 
 A standalone frontend for "Six Degrees of" projects, forked from [Six Degrees of Wikipedia](https://www.sixdegreesofwikipedia.com/), refer to its [README.md](https://github.com/jwngr/sdow/blob/master/README.md) for more details on that project.
 
+## Usage
+
+The easiest way to use this repo is having it as a subtree of your project.
+
+```sh
+cd your-project
+git subtree add --prefix=frontend https://github.com/aartoni/sixdegreesoffrontend.git main --squash
+```
+
+Then, adding it to your `compose.yml`.
+
+```yml
+services:
+  api: # ...
+  db:  # ...
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+```
+
 ## Changes
 
 - environment variables support;
