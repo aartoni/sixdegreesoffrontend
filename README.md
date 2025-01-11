@@ -23,6 +23,8 @@ services:
       dockerfile: Dockerfile
 ```
 
+Finally, changing the variables in `.env` and build the Docker image. The easiest way to add custom features would be forking this repository, then repeating the above steps.
+
 ## Changes
 
 - environment variables support;
