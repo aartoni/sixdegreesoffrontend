@@ -4,7 +4,7 @@ import LazyLoad from 'react-lazyload';
 import styled from 'styled-components';
 
 import defaultPageThumbnail from '../images/defaultPageThumbnail.png';
-import {WikipediaPage, WikipediaPageId} from '../types';
+import {WikipediaPage} from '../types';
 
 const ResultsListWrapper = styled.div`
   margin: 0 auto;
@@ -108,13 +108,11 @@ const PageDescription = styled.p`
 `;
 
 const ResultListItem: React.FC<{
-  readonly path: readonly WikipediaPageId[];
-  readonly pagesById: Record<WikipediaPageId, WikipediaPage>;
-}> = ({path, pagesById}) => {
+  readonly path: readonly WikipediaPage[];
+}> = ({path}) => {
   const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-  const pagesContent = path.map((pageId, i) => {
-    const page = pagesById[pageId];
+  const pagesContent = path.map((page, i) => {
     if (!page) return null;
     const {description, title, url, thumbnailUrl} = page;
 
@@ -140,16 +138,15 @@ const ResultListItem: React.FC<{
 };
 
 export const ResultsList: React.FC<{
-  readonly paths: readonly WikipediaPageId[][];
-  readonly pagesById: Record<WikipediaPageId, WikipediaPage>;
-}> = ({paths, pagesById}) => {
+  readonly paths: readonly WikipediaPage[][];
+}> = ({paths}) => {
   const maxResultsToDisplay = 50;
   const numHiddenPaths = paths.length - maxResultsToDisplay;
 
   // Only display a limited number of results, lazily loading all of them.
   const resultsListItems = paths.slice(0, maxResultsToDisplay).map((path, i) => (
     <LazyLoad once={true} offset={200} key={i}>
-      <ResultListItem path={path} pagesById={pagesById} />
+      <ResultListItem path={path} />
     </LazyLoad>
   ));
 

@@ -130,7 +130,7 @@ interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
 }
 
 const GraphLegend: React.FC<{
-  readonly paths: readonly WikipediaPageId[][];
+  readonly paths: readonly WikipediaPage[][];
   readonly color: d3.ScaleOrdinal<string, string, never>;
 }> = ({paths, color}) => {
   const labels = map(range(0, paths[0].length), (i) => {
@@ -162,9 +162,8 @@ const GraphLegend: React.FC<{
 };
 
 export const ResultsGraph: React.FC<{
-  readonly paths: readonly WikipediaPageId[][];
-  readonly pagesById: Record<WikipediaPageId, WikipediaPage>;
-}> = ({paths, pagesById}) => {
+  readonly paths: readonly WikipediaPage[][];
+}> = ({paths}) => {
   const graphRef = useRef<SVGSVGElement | null>(null);
   const simulationRef = useRef<d3.Simulation<GraphNode, GraphLink> | null>(null);
   const graphSvgRef = useRef<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
@@ -185,26 +184,19 @@ export const ResultsGraph: React.FC<{
 
     paths.forEach((path) => {
       let previousPageId: WikipediaPageId | null = null;
-      path.forEach((currentPageId, i) => {
-        const currentPage = pagesById[currentPageId];
-        if (!currentPage) {
-          // eslint-disable-next-line no-console
-          console.error(`Failed to find page with ID ${currentPageId} in pages dictionary`);
-          return;
-        }
-
-        if (!seenNodes.has(currentPageId)) {
+      path.forEach((currentPage, i) => {
+        if (!seenNodes.has(currentPage.id)) {
           nodesData.push({
-            id: currentPageId,
+            id: currentPage.id,
             title: currentPage.title,
             degree: i,
           });
-          seenNodes.add(currentPageId);
+          seenNodes.add(currentPage.id);
         }
 
         if (previousPageId) {
           const sourceNode = nodesData.find((n) => n.id === previousPageId);
-          const targetNode = nodesData.find((n) => n.id === currentPageId);
+          const targetNode = nodesData.find((n) => n.id === currentPage.id);
           if (!sourceNode || !targetNode) {
             // eslint-disable-next-line no-console
             console.error('Failed to find source or target node');
@@ -216,12 +208,12 @@ export const ResultsGraph: React.FC<{
           });
         }
 
-        previousPageId = currentPageId;
+        previousPageId = currentPage.id;
       });
     });
 
     return {nodesData, linksData};
-  }, [pagesById, paths]);
+  }, [paths]);
 
   const zoom = useMemo(() => {
     return d3.zoom().on('zoom', (event) => {
@@ -266,7 +258,7 @@ export const ResultsGraph: React.FC<{
     if (!graphSvgRef.current) return;
 
     const pathsLength = paths[0].length;
-    const targetPageId = pagesById[paths[0][pathsLength - 1]].id;
+    const targetPageId = paths[0][pathsLength - 1].id;
 
     const {nodesData, linksData} = getGraphData();
 
@@ -387,7 +379,7 @@ export const ResultsGraph: React.FC<{
       graphSvgRef.current?.selectAll('*').remove();
       window.removeEventListener('resize', handleResizeDebounced);
     };
-  }, [simulation, paths, pagesById, color, getGraphData, getGraphWidth, resetGraph, zoom]);
+  }, [simulation, paths, color, getGraphData, getGraphWidth, resetGraph, zoom]);
 
   return (
     <GraphWrapper ref={graphWrapperSizeRef}>

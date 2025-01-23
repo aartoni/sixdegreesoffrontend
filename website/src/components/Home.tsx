@@ -4,7 +4,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 
 import {fetchShortestPaths} from '../api';
-import {WikipediaPage, WikipediaPageId} from '../types';
+import {WikipediaPage} from '../types';
 import {getRandomPageTitle} from '../utils';
 import {Button} from './common/Button';
 import {Logo} from './common/Logo';
@@ -15,8 +15,7 @@ import {Results} from './Results';
 import {SwapInputValuesButton} from './SwapInputValuesButton';
 
 interface ShortestPathsState {
-  readonly paths: readonly WikipediaPageId[][];
-  readonly pagesById: Record<WikipediaPageId, WikipediaPage>;
+  readonly paths: readonly WikipediaPage[][];
   readonly sourcePageTitle: string;
   readonly targetPageTitle: string;
   readonly isSourceRedirected: boolean;
@@ -177,8 +176,7 @@ export const Home: React.FC = () => {
       });
 
       setShortestPathsState({
-        paths: response.paths,
-        pagesById: response.pagesById,
+        paths: response.paths.map((path) => path.map((pageId) => response.pagesById[pageId])),
         sourcePageTitle: response.sourcePageTitle,
         targetPageTitle: response.targetPageTitle,
         isSourceRedirected: response.isSourceRedirected,
@@ -301,7 +299,6 @@ export const Home: React.FC = () => {
       ) : shortestPathsState ? (
         <Results
           paths={shortestPathsState.paths}
-          pagesById={shortestPathsState.pagesById}
           sourcePageTitle={shortestPathsState.sourcePageTitle}
           targetPageTitle={shortestPathsState.targetPageTitle}
           isSourceRedirected={shortestPathsState.isSourceRedirected}

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {WikipediaPage, WikipediaPageId} from '../types';
+import {WikipediaPage} from '../types';
 import {getNumberWithCommas, getWikipediaPageUrl} from '../utils';
 import {Button} from './common/Button';
 import {StyledTextLink} from './common/StyledTextLink';
@@ -130,8 +130,7 @@ const RedirectWarning: React.FC<{
 };
 
 export const Results: React.FC<{
-  readonly paths: readonly WikipediaPageId[][];
-  readonly pagesById: Record<WikipediaPageId, WikipediaPage>;
+  readonly paths: readonly WikipediaPage[][];
   readonly sourcePageTitle: string;
   readonly targetPageTitle: string;
   readonly isSourceRedirected: boolean;
@@ -139,7 +138,6 @@ export const Results: React.FC<{
   readonly durationInSeconds: string;
 }> = ({
   paths,
-  pagesById,
   sourcePageTitle,
   targetPageTitle,
   isSourceRedirected,
@@ -222,8 +220,8 @@ export const Results: React.FC<{
           <p>Tweet result</p>
         </TwitterButton>
       </TwitterButtonWrapper>
-      <ResultsGraph paths={paths} pagesById={pagesById} />
-      <ResultsList paths={paths} pagesById={pagesById} />
+      <ResultsGraph paths={paths} />
+      <ResultsList paths={paths} />
     </>
   );
 };
