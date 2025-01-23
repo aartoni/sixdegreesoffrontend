@@ -1,8 +1,9 @@
+import {first, last} from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
 
 import {WikipediaPage} from '../types';
-import {getNumberWithCommas, getWikipediaPageUrl} from '../utils';
+import {getNumberWithCommas} from '../utils';
 import {Button} from './common/Button';
 import {StyledTextLink} from './common/StyledTextLink';
 import {ResultsGraph} from './ResultsGraph';
@@ -144,10 +145,13 @@ export const Results: React.FC<{
   isTargetRedirected,
   durationInSeconds,
 }) => {
+  const sourceUrl = first(paths[0])?.url;
+  const targetUrl = last(paths[0])?.url;
+
   const sourcePageLink = (
     <StyledTextLink
       text={sourcePageTitle}
-      href={getWikipediaPageUrl(sourcePageTitle)}
+      href={sourceUrl}
       target="_blank"
     />
   );
@@ -155,7 +159,7 @@ export const Results: React.FC<{
   const targetPageLink = (
     <StyledTextLink
       text={targetPageTitle}
-      href={getWikipediaPageUrl(targetPageTitle)}
+      href={targetUrl}
       target="_blank"
     />
   );
