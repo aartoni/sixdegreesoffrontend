@@ -31,6 +31,8 @@ Finally, changing the variables in `.env` and build the Docker image. The easies
     - automatic substitution in the [web app manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) and HTML files;
 - improved compliance to HTTP semantics
   - use a GET request instead of a POST to retrieve the paths
+- larger server responses in exchange for readability
+  - embeds the data of each node in every path instead of only storing their IDs and and storing a single copy of each node into a map (this will likely change in the future)
 - Google Analytics removed;
 
 ## Contributing
