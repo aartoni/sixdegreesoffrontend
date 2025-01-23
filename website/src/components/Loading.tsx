@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-import {getRandomWikipediaFact, getWikipediaPageUrl} from '../utils';
-import {StyledTextLink} from './common/StyledTextLink';
+import {getRandomWikipediaFact} from '../utils';
 
 const Wrapper = styled.div`
   width: 700px;
@@ -109,29 +108,6 @@ export const Loading: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Replace page titles in the current fact with a link to the corresponding Wikipedia page.
-  let skipCount = 0;
-  const factContent: React.ReactNode[] = [];
-  const tokens = currentFact.split('"');
-  tokens.forEach((token, i) => {
-    if (skipCount === 0) {
-      if (i % 2 === 0) {
-        // Regular text
-        factContent.push(<span key={i}>{token}</span>);
-      } else {
-        // Wikipedia link
-        // Single apostrophe is used for Wikipedia links which themselves have a double apostrophe
-        // in them.
-        token = token.replace(/'/g, `"`);
-        factContent.push(
-          <StyledTextLink key={i} text={token} href={getWikipediaPageUrl(token)} target="_blank" />
-        );
-      }
-    } else {
-      skipCount--;
-    }
-  });
-
   return (
     <Wrapper>
       <LoadingIndicator>
@@ -140,7 +116,7 @@ export const Loading: React.FC = () => {
         <div />
         <div />
       </LoadingIndicator>
-      <FactWrapper>{factContent}</FactWrapper>
+      <FactWrapper><span key="0">{currentFact}</span></FactWrapper>
     </Wrapper>
   );
 };
