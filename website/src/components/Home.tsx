@@ -176,7 +176,7 @@ export const Home: React.FC = () => {
       });
 
       setShortestPathsState({
-        paths: response.paths.map((path) => path.map((pageId) => response.pagesById[pageId])),
+        paths: response.paths,
         sourcePageTitle: response.sourcePageTitle,
         targetPageTitle: response.targetPageTitle,
         isSourceRedirected: response.isSourceRedirected,

@@ -9,8 +9,7 @@ export interface WikipediaPage {
 }
 
 export interface ShortestPathsApiResponse {
-  readonly paths: readonly number[][];
-  readonly pages: Record<string, WikipediaPage>;
+  readonly paths: readonly WikipediaPage[][];
   readonly sourcePageTitle: string;
   readonly targetPageTitle: string;
   readonly isSourceRedirected: boolean;

@@ -3,12 +3,10 @@ import {
   ShortestPathsApiResponse,
   ShortestPathsErrorResponse,
   WikipediaPage,
-  WikipediaPageId,
 } from './types';
 
 interface FetchShortestPathsResponse {
-  readonly paths: readonly WikipediaPageId[][];
-  readonly pagesById: Record<WikipediaPageId, WikipediaPage>;
+  readonly paths: readonly WikipediaPage[][];
   readonly sourcePageTitle: string;
   readonly targetPageTitle: string;
   readonly isSourceRedirected: boolean;
@@ -33,8 +31,7 @@ export async function fetchShortestPaths({
   const data = (await response.json()) as ShortestPathsApiResponse;
 
   return {
-    paths: data.paths.map((path) => path.map((pageId) => pageId.toString())),
-    pagesById: data.pages,
+    paths: data.paths,
     sourcePageTitle: data.sourcePageTitle,
     targetPageTitle: data.targetPageTitle,
     isSourceRedirected: data.isSourceRedirected,
