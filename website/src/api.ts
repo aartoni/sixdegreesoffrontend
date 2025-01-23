@@ -22,16 +22,8 @@ export async function fetchShortestPaths({
   readonly sourcePageTitle: string;
   readonly targetPageTitle: string;
 }): Promise<FetchShortestPathsResponse> {
-  const response = await fetch(`${API_URL}/paths`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      source: sourcePageTitle,
-      target: targetPageTitle,
-    }),
-  });
+  const params = new URLSearchParams({source: sourcePageTitle, target: targetPageTitle});
+  const response = await fetch(`${API_URL}/paths?${params.toString()}`);
 
   if (!response.ok) {
     const data = (await response.json()) as ShortestPathsErrorResponse;

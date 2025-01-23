@@ -29,6 +29,8 @@ Finally, changing the variables in `.env` and build the Docker image. The easies
 
 - environment variables support;
     - automatic substitution in the [web app manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) and HTML files;
+- improved compliance to HTTP semantics
+  - use a GET request instead of a POST to retrieve the paths
 - Google Analytics removed;
 
 ## Contributing
