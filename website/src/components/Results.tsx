@@ -8,6 +8,7 @@ import {Button} from './common/Button';
 import {StyledTextLink} from './common/StyledTextLink';
 import {ResultsGraph} from './ResultsGraph';
 import {ResultsList} from './ResultsList';
+import { TOPIC } from '../resources/constants';
 
 const ResultsMessage = styled.div`
   width: 800px;
@@ -185,7 +186,7 @@ export const Results: React.FC<{
 
   const tweetText = `Found ${getNumberWithCommas(
     paths.length
-  )} ${pathOrPaths} with ${degreesOfSeparation} ${degreeOrDegrees} of separation from "${sourcePageTitle}" to "${targetPageTitle}" on Six Degrees of Wikipedia!`;
+  )} ${pathOrPaths} with ${degreesOfSeparation} ${degreeOrDegrees} of separation from "${sourcePageTitle}" to "${targetPageTitle}" on Six Degrees of ${TOPIC}!`;
   const tweetUrl = `https://www.sixdegreesofwikipedia.com/?source=${encodeURIComponent(
     sourcePageTitle
   )}&target=${encodeURIComponent(targetPageTitle)}`;

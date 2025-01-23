@@ -13,6 +13,7 @@ import {NavLinks} from './NavLinks';
 import {PageInput} from './PageInput';
 import {Results} from './Results';
 import {SwapInputValuesButton} from './SwapInputValuesButton';
+import { TOPIC } from '../resources/constants';
 
 interface ShortestPathsState {
   readonly paths: readonly WikipediaPage[][];
@@ -191,7 +192,7 @@ export const Home: React.FC = () => {
         // FLASK_DEBUG environment variable is set to 1 and there is a 5xx server error (see
         // https://github.com/corydolphin/flask-cors/issues/67 for details).
         setErrorMessage(
-          'Whoops... Six Degrees of Wikipedia is temporarily unavailable. Please try again in a few seconds.'
+          `Whoops... Six Degrees of ${TOPIC} is temporarily unavailable. Please try again in a few seconds.`
         );
       } else {
         // This can happen when there is a 4xx or 5xx error (except for the case noted in the
