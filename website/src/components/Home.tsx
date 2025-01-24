@@ -17,8 +17,8 @@ import { TOPIC } from '../resources/constants';
 
 interface ShortestPathsState {
   readonly paths: readonly WikipediaPage[][];
-  readonly sourcePageTitle: string;
-  readonly targetPageTitle: string;
+  readonly sourceFriendlyName: string;
+  readonly targetFriendlyName: string;
   readonly isSourceRedirected: boolean;
   readonly isTargetRedirected: boolean;
   readonly durationInSeconds: string;
@@ -141,8 +141,8 @@ export const Home: React.FC = () => {
 
   // Initialize the source and target page titles from the URL.
   const searchParamsFromUrl = new URLSearchParams(location.search);
-  const [sourcePageTitle, setSourcePageTitle] = useState(searchParamsFromUrl.get('source') || '');
-  const [targetPageTitle, setTargetPageTitle] = useState(searchParamsFromUrl.get('target') || '');
+  const [sourceFriendlyName, setSourceFriendlyName] = useState(searchParamsFromUrl.get('source') || '');
+  const [targetFriendlyName, setTargetFriendlyName] = useState(searchParamsFromUrl.get('target') || '');
 
   const [sourcePagePlaceholderText, setSourcePagePlaceholderText] = useState(getRandomPageTitle());
   const [targetPagePlaceholderText, setTargetPagePlaceholderText] = useState(getRandomPageTitle());
@@ -161,8 +161,8 @@ export const Home: React.FC = () => {
     setIsFetchingResults(true);
     setErrorMessage(null);
 
-    const actualSourcePageTitle = sourcePageTitle || sourcePagePlaceholderText;
-    const actualTargetPageTitle = targetPageTitle || targetPagePlaceholderText;
+    const actualSourcePageTitle = sourceFriendlyName || sourcePagePlaceholderText;
+    const actualTargetPageTitle = targetFriendlyName || targetPagePlaceholderText;
 
     try {
       // Update the URL to reflect the new search.
@@ -172,14 +172,14 @@ export const Home: React.FC = () => {
       navigate({search: searchParams.toString()});
 
       const response = await fetchShortestPaths({
-        sourcePageTitle: actualSourcePageTitle,
-        targetPageTitle: actualTargetPageTitle,
+        source: actualSourcePageTitle,
+        target: actualTargetPageTitle,
       });
 
       setShortestPathsState({
         paths: response.paths,
-        sourcePageTitle: response.sourcePageTitle,
-        targetPageTitle: response.targetPageTitle,
+        sourceFriendlyName: response.sourceFriendlyName,
+        targetFriendlyName: response.targetFriendlyName,
         isSourceRedirected: response.isSourceRedirected,
         isTargetRedirected: response.isTargetRedirected,
         durationInSeconds: ((Date.now() - startTimeInMilliseconds) / 1000).toFixed(2),
@@ -208,9 +208,9 @@ export const Home: React.FC = () => {
   }, [
     navigate,
     sourcePagePlaceholderText,
-    sourcePageTitle,
+    sourceFriendlyName,
     targetPagePlaceholderText,
-    targetPageTitle,
+    targetFriendlyName,
   ]);
 
   return (
@@ -218,8 +218,8 @@ export const Home: React.FC = () => {
       <Logo
         onClick={() => {
           // Clear page inputs.
-          setSourcePageTitle('');
-          setTargetPageTitle('');
+          setSourceFriendlyName('');
+          setTargetFriendlyName('');
 
           // Reset shortest paths reponse data.
           setShortestPathsState(null);
@@ -256,21 +256,21 @@ export const Home: React.FC = () => {
       <P>Find the shortest paths from</P>
       <InputFlexContainer>
         <PageInput
-          title={sourcePageTitle}
-          setTitle={setSourcePageTitle}
+          title={sourceFriendlyName}
+          setTitle={setSourceFriendlyName}
           placeholderText={sourcePagePlaceholderText}
           setPlaceholderText={setSourcePagePlaceholderText}
         />
         <SwapInputValuesButton
-          canSwap={targetPageTitle.trim().length > 0 && sourcePageTitle.trim().length > 0}
+          canSwap={targetFriendlyName.trim().length > 0 && sourceFriendlyName.trim().length > 0}
           onClick={() => {
-            setSourcePageTitle(targetPageTitle);
-            setTargetPageTitle(sourcePageTitle);
+            setSourceFriendlyName(targetFriendlyName);
+            setTargetFriendlyName(sourceFriendlyName);
           }}
         />
         <PageInput
-          title={targetPageTitle}
-          setTitle={setTargetPageTitle}
+          title={targetFriendlyName}
+          setTitle={setTargetFriendlyName}
           placeholderText={targetPagePlaceholderText}
           setPlaceholderText={setTargetPagePlaceholderText}
         />
@@ -279,11 +279,11 @@ export const Home: React.FC = () => {
       {isFetchingResults ? null : (
         <SearchButtonWrapper
           onClick={async () => {
-            if (sourcePageTitle.trim().length === 0) {
-              setSourcePageTitle(sourcePagePlaceholderText);
+            if (sourceFriendlyName.trim().length === 0) {
+              setSourceFriendlyName(sourcePagePlaceholderText);
             }
-            if (targetPageTitle.trim().length === 0) {
-              setTargetPageTitle(targetPagePlaceholderText);
+            if (targetFriendlyName.trim().length === 0) {
+              setTargetFriendlyName(targetPagePlaceholderText);
             }
 
             await handleFetchShortestPaths();
@@ -300,8 +300,8 @@ export const Home: React.FC = () => {
       ) : shortestPathsState ? (
         <Results
           paths={shortestPathsState.paths}
-          sourcePageTitle={shortestPathsState.sourcePageTitle}
-          targetPageTitle={shortestPathsState.targetPageTitle}
+          sourceFriendlyName={shortestPathsState.sourceFriendlyName}
+          targetFriendlyName={shortestPathsState.targetFriendlyName}
           isSourceRedirected={shortestPathsState.isSourceRedirected}
           isTargetRedirected={shortestPathsState.isTargetRedirected}
           durationInSeconds={shortestPathsState.durationInSeconds}

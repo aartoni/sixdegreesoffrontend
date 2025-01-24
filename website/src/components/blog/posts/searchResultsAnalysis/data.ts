@@ -20,8 +20,8 @@ export const mostPopularSearchesHeaders: string[] = [
 ];
 
 interface PopularSearch {
-  readonly sourcePageTitle: string;
-  readonly targetPageTitle: string;
+  readonly sourceFriendlyName: string;
+  readonly targetFriendlyName: string;
   readonly degreesOfSeparation: number | null; // null means no path.
   readonly numberOfSearches: number;
   readonly referenceText: string;
@@ -30,56 +30,56 @@ interface PopularSearch {
 
 export const mostPopularSearches: PopularSearch[] = [
   {
-    sourcePageTitle: 'Anime',
-    targetPageTitle: 'Obesity',
+    sourceFriendlyName: 'Anime',
+    targetFriendlyName: 'Obesity',
     degreesOfSeparation: 3,
     numberOfSearches: 2813,
     referenceText: 'Hacker News',
     referenceUrl: 'https://news.ycombinator.com/item?id=16468749',
   },
   {
-    sourcePageTitle: 'Age of Enlightenment',
-    targetPageTitle: 'Consumption of Tide Pods',
+    sourceFriendlyName: 'Age of Enlightenment',
+    targetFriendlyName: 'Consumption of Tide Pods',
     degreesOfSeparation: 2,
     numberOfSearches: 2611,
     referenceText: 'Hacker News',
     referenceUrl: 'https://news.ycombinator.com/item?id=16468523',
   },
   {
-    sourcePageTitle: 'Anime',
-    targetPageTitle: 'Alt-right',
+    sourceFriendlyName: 'Anime',
+    targetFriendlyName: 'Alt-right',
     degreesOfSeparation: 2,
     numberOfSearches: 1557,
     referenceText: 'Hacker News',
     referenceUrl: 'https://news.ycombinator.com/item?id=16469486',
   },
   {
-    sourcePageTitle: 'Lion Express',
-    targetPageTitle: 'Phinney',
+    sourceFriendlyName: 'Lion Express',
+    targetFriendlyName: 'Phinney',
     degreesOfSeparation: 7,
     numberOfSearches: 1380,
     referenceText: 'Hacker News',
     referenceUrl: 'https://news.ycombinator.com/item?id=16469620',
   },
   {
-    sourcePageTitle: 'Spud gun',
-    targetPageTitle: 'Sputnik-1 EMC/EMI lab model',
+    sourceFriendlyName: 'Spud gun',
+    targetFriendlyName: 'Sputnik-1 EMC/EMI lab model',
     degreesOfSeparation: null,
     numberOfSearches: 1274,
     referenceText: 'Hacker News',
     referenceUrl: 'https://news.ycombinator.com/item?id=16468643',
   },
   {
-    sourcePageTitle: 'Consumption of Tide Pods',
-    targetPageTitle: 'Age of Enlightenment',
+    sourceFriendlyName: 'Consumption of Tide Pods',
+    targetFriendlyName: 'Age of Enlightenment',
     degreesOfSeparation: 3,
     numberOfSearches: 1160,
     referenceText: 'Hacker News',
     referenceUrl: 'https://news.ycombinator.com/item?id=16468945',
   },
   {
-    sourcePageTitle: 'Hargrave Military Academy',
-    targetPageTitle: 'Illiosentidae',
+    sourceFriendlyName: 'Hargrave Military Academy',
+    targetFriendlyName: 'Illiosentidae',
     degreesOfSeparation: 6,
     numberOfSearches: 763,
     referenceText: 'GitHub',
@@ -87,8 +87,8 @@ export const mostPopularSearches: PopularSearch[] = [
       'https://github.com/jwngr/sdow/blob/master/docs/miscellaneous.md#noteworthy-searches',
   },
   {
-    sourcePageTitle: 'Six Degrees of Kevin Bacon',
-    targetPageTitle: 'Phinney',
+    sourceFriendlyName: 'Six Degrees of Kevin Bacon',
+    targetFriendlyName: 'Phinney',
     degreesOfSeparation: 6,
     numberOfSearches: 692,
     referenceText: 'GitHub',
@@ -96,16 +96,16 @@ export const mostPopularSearches: PopularSearch[] = [
       'https://github.com/jwngr/sdow/blob/master/docs/miscellaneous.md#noteworthy-searches',
   },
   {
-    sourcePageTitle: 'John F. Kennedy',
-    targetPageTitle: 'Mikko Hyppönen',
+    sourceFriendlyName: 'John F. Kennedy',
+    targetFriendlyName: 'Mikko Hyppönen',
     degreesOfSeparation: 3,
     numberOfSearches: 642,
     referenceText: 'Twitter',
     referenceUrl: 'https://twitter.com/mikko/status/968407596347641856',
   },
   {
-    sourcePageTitle: 'CT scan',
-    targetPageTitle: 'MetaFilter',
+    sourceFriendlyName: 'CT scan',
+    targetFriendlyName: 'MetaFilter',
     degreesOfSeparation: 3,
     numberOfSearches: 548,
     referenceText: 'MetaFilter',
@@ -140,70 +140,70 @@ export const mostPathSearchesHeaders: string[] = [
 ];
 
 interface SearchResult {
-  readonly sourcePageTitle: string;
-  readonly targetPageTitle: string;
+  readonly sourceFriendlyName: string;
+  readonly targetFriendlyName: string;
   readonly degreesOfSeparation: number;
   readonly numberOfPaths: number;
 }
 
 export const mostPathSearches: readonly SearchResult[] = [
   {
-    sourcePageTitle: 'List of shipwrecks in 1842',
-    targetPageTitle: 'Geographic coordinate system',
+    sourceFriendlyName: 'List of shipwrecks in 1842',
+    targetFriendlyName: 'Geographic coordinate system',
     degreesOfSeparation: 2,
     numberOfPaths: 1229,
   },
   {
-    sourcePageTitle: 'List of 20th-century writers',
-    targetPageTitle: 'List of sovereign states',
+    sourceFriendlyName: 'List of 20th-century writers',
+    targetFriendlyName: 'List of sovereign states',
     degreesOfSeparation: 3,
     numberOfPaths: 7145,
   },
   {
-    sourcePageTitle: 'Alpaca',
-    targetPageTitle: 'Czech phonology',
+    sourceFriendlyName: 'Alpaca',
+    targetFriendlyName: 'Czech phonology',
     degreesOfSeparation: 4,
     numberOfPaths: 9705,
   },
   {
-    sourcePageTitle: 'Berchtesgaden',
-    targetPageTitle: 'Wrestle Kingdom 10',
+    sourceFriendlyName: 'Berchtesgaden',
+    targetFriendlyName: 'Wrestle Kingdom 10',
     degreesOfSeparation: 5,
     numberOfPaths: 10277,
   },
   {
-    sourcePageTitle: 'Data monitoring switch',
-    targetPageTitle: 'Pirpainti (Vidhan Sabha constituency)',
+    sourceFriendlyName: 'Data monitoring switch',
+    targetFriendlyName: 'Pirpainti (Vidhan Sabha constituency)',
     degreesOfSeparation: 6,
     numberOfPaths: 13131,
   },
   {
-    sourcePageTitle: '112th Ohio General Assembly',
-    targetPageTitle: 'Gunnar Knudsenfjella',
+    sourceFriendlyName: '112th Ohio General Assembly',
+    targetFriendlyName: 'Gunnar Knudsenfjella',
     degreesOfSeparation: 7,
     numberOfPaths: 7288,
   },
   {
-    sourcePageTitle: 'Generalized Tobit',
-    targetPageTitle: 'Phinney',
+    sourceFriendlyName: 'Generalized Tobit',
+    targetFriendlyName: 'Phinney',
     degreesOfSeparation: 8,
     numberOfPaths: 6248,
   },
   {
-    sourcePageTitle: 'Lion Express',
-    targetPageTitle: 'Phinney',
+    sourceFriendlyName: 'Lion Express',
+    targetFriendlyName: 'Phinney',
     degreesOfSeparation: 9,
     numberOfPaths: 1246,
   },
   {
-    sourcePageTitle: 'Lion Express',
-    targetPageTitle: 'Excitation',
+    sourceFriendlyName: 'Lion Express',
+    targetFriendlyName: 'Excitation',
     degreesOfSeparation: 10,
     numberOfPaths: 262,
   },
   {
-    sourcePageTitle: 'Embleton',
-    targetPageTitle: 'McCombie',
+    sourceFriendlyName: 'Embleton',
+    targetFriendlyName: 'McCombie',
     degreesOfSeparation: 11,
     numberOfPaths: 142,
   },

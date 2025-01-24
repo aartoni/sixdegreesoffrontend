@@ -10,8 +10,8 @@ export interface WikipediaPage {
 
 export interface ShortestPathsApiResponse {
   readonly paths: readonly WikipediaPage[][];
-  readonly sourcePageTitle: string;
-  readonly targetPageTitle: string;
+  readonly sourceFriendlyName: string;
+  readonly targetFriendlyName: string;
   readonly isSourceRedirected: boolean;
   readonly isTargetRedirected: boolean;
 }

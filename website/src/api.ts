@@ -7,20 +7,20 @@ import {
 
 interface FetchShortestPathsResponse {
   readonly paths: readonly WikipediaPage[][];
-  readonly sourcePageTitle: string;
-  readonly targetPageTitle: string;
+  readonly sourceFriendlyName: string;
+  readonly targetFriendlyName: string;
   readonly isSourceRedirected: boolean;
   readonly isTargetRedirected: boolean;
 }
 
 export async function fetchShortestPaths({
-  sourcePageTitle,
-  targetPageTitle,
+  source,
+  target,
 }: {
-  readonly sourcePageTitle: string;
-  readonly targetPageTitle: string;
+  readonly source: string;
+  readonly target: string;
 }): Promise<FetchShortestPathsResponse> {
-  const params = new URLSearchParams({source: sourcePageTitle, target: targetPageTitle});
+  const params = new URLSearchParams({source, target});
   const response = await fetch(`${API_URL}/paths?${params.toString()}`);
 
   if (!response.ok) {
@@ -32,8 +32,8 @@ export async function fetchShortestPaths({
 
   return {
     paths: data.paths,
-    sourcePageTitle: data.sourcePageTitle,
-    targetPageTitle: data.targetPageTitle,
+    sourceFriendlyName: data.sourceFriendlyName,
+    targetFriendlyName: data.targetFriendlyName,
     isSourceRedirected: data.isSourceRedirected,
     isTargetRedirected: data.isTargetRedirected,
   };

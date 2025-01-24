@@ -133,15 +133,15 @@ const RedirectWarning: React.FC<{
 
 export const Results: React.FC<{
   readonly paths: readonly WikipediaPage[][];
-  readonly sourcePageTitle: string;
-  readonly targetPageTitle: string;
+  readonly sourceFriendlyName: string;
+  readonly targetFriendlyName: string;
   readonly isSourceRedirected: boolean;
   readonly isTargetRedirected: boolean;
   readonly durationInSeconds: string;
 }> = ({
   paths,
-  sourcePageTitle,
-  targetPageTitle,
+  sourceFriendlyName,
+  targetFriendlyName,
   isSourceRedirected,
   isTargetRedirected,
   durationInSeconds,
@@ -151,7 +151,7 @@ export const Results: React.FC<{
 
   const sourcePageLink = (
     <StyledTextLink
-      text={sourcePageTitle}
+      text={sourceFriendlyName}
       href={sourceUrl}
       target="_blank"
     />
@@ -159,7 +159,7 @@ export const Results: React.FC<{
 
   const targetPageLink = (
     <StyledTextLink
-      text={targetPageTitle}
+      text={targetFriendlyName}
       href={targetUrl}
       target="_blank"
     />
@@ -186,10 +186,10 @@ export const Results: React.FC<{
 
   const tweetText = `Found ${getNumberWithCommas(
     paths.length
-  )} ${pathOrPaths} with ${degreesOfSeparation} ${degreeOrDegrees} of separation from "${sourcePageTitle}" to "${targetPageTitle}" on Six Degrees of ${TOPIC}!`;
+  )} ${pathOrPaths} with ${degreesOfSeparation} ${degreeOrDegrees} of separation from "${sourceFriendlyName}" to "${targetFriendlyName}" on Six Degrees of ${TOPIC}!`;
   const tweetUrl = `https://www.sixdegreesofwikipedia.com/?source=${encodeURIComponent(
-    sourcePageTitle
-  )}&target=${encodeURIComponent(targetPageTitle)}`;
+    sourceFriendlyName
+  )}&target=${encodeURIComponent(targetFriendlyName)}`;
 
   return (
     <>
