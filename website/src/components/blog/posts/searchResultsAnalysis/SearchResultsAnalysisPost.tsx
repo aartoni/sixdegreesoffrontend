@@ -175,11 +175,11 @@ export const SearchResultsAnalysisPost = () => (
       headers={data.mostPopularSearchesHeaders}
       rows={data.mostPopularSearches.map((searchInfo) => {
         const searchUrl = `/?source=${encodeURIComponent(
-          searchInfo.sourceFriendlyName
-        )}&target=${encodeURIComponent(searchInfo.targetFriendlyName)}`;
+          searchInfo.sourceLabel
+        )}&target=${encodeURIComponent(searchInfo.targetLabel)}`;
         const searchLink = (
           <StyledTextLink
-            text={`${searchInfo.sourceFriendlyName} → ${searchInfo.targetFriendlyName}`}
+            text={`${searchInfo.sourceLabel} → ${searchInfo.targetLabel}`}
             href={searchUrl}
           />
         );
@@ -330,11 +330,11 @@ export const SearchResultsAnalysisPost = () => (
       headers={data.mostPathSearchesHeaders}
       rows={data.mostPathSearches.map((searchInfo) => {
         const searchUrl = `/?source=${encodeURIComponent(
-          searchInfo.sourceFriendlyName
-        )}&target=${encodeURIComponent(searchInfo.targetFriendlyName)}`;
+          searchInfo.sourceLabel
+        )}&target=${encodeURIComponent(searchInfo.targetLabel)}`;
         const link = (
           <StyledTextLink
-            text={`${searchInfo.sourceFriendlyName} → ${searchInfo.targetFriendlyName}`}
+            text={`${searchInfo.sourceLabel} → ${searchInfo.targetLabel}`}
             href={searchUrl}
           />
         );

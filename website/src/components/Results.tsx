@@ -133,29 +133,23 @@ const RedirectWarning: React.FC<{
 
 export const Results: React.FC<{
   readonly paths: readonly WikipediaPage[][];
-  readonly sourceFriendlyName: string;
-  readonly targetFriendlyName: string;
+  readonly sourceLabel: string;
+  readonly targetLabel: string;
   readonly isSourceRedirected: boolean;
   readonly isTargetRedirected: boolean;
   readonly durationInSeconds: string;
 }> = ({
   paths,
-  sourceFriendlyName,
-  targetFriendlyName,
+  sourceLabel,
+  targetLabel,
   isSourceRedirected,
   isTargetRedirected,
   durationInSeconds,
 }) => {
   const sourceUrl = first(paths[0])?.url;
   const targetUrl = last(paths[0])?.url;
-
-  const sourcePageLink = (
-    <StyledTextLink text={sourceFriendlyName} href={sourceUrl} target="_blank" />
-  );
-
-  const targetPageLink = (
-    <StyledTextLink text={targetFriendlyName} href={targetUrl} target="_blank" />
-  );
+  const sourcePageLink = <StyledTextLink text={sourceLabel} href={sourceUrl} target="_blank" />;
+  const targetPageLink = <StyledTextLink text={targetLabel} href={targetUrl} target="_blank" />;
 
   // No paths found.
   if (paths.length === 0) {
@@ -178,10 +172,10 @@ export const Results: React.FC<{
 
   const tweetText = `Found ${getNumberWithCommas(
     paths.length
-  )} ${pathOrPaths} with ${degreesOfSeparation} ${degreeOrDegrees} of separation from "${sourceFriendlyName}" to "${targetFriendlyName}" on Six Degrees of ${TOPIC}!`;
+  )} ${pathOrPaths} with ${degreesOfSeparation} ${degreeOrDegrees} of separation from "${sourceLabel}" to "${targetLabel}" on Six Degrees of ${TOPIC}!`;
   const tweetUrl = `https://www.sixdegreesofwikipedia.com/?source=${encodeURIComponent(
-    sourceFriendlyName
-  )}&target=${encodeURIComponent(targetFriendlyName)}`;
+    sourceLabel
+  )}&target=${encodeURIComponent(targetLabel)}`;
 
   return (
     <>

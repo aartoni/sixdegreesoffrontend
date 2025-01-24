@@ -2,7 +2,7 @@ export type WikipediaPageId = string;
 
 export interface WikipediaPage {
   readonly id: WikipediaPageId;
-  readonly title: string;
+  readonly label: string;
   readonly url: string;
   readonly description?: string;
   readonly thumbnailUrl?: string;
@@ -10,8 +10,8 @@ export interface WikipediaPage {
 
 export interface ShortestPathsApiResponse {
   readonly paths: readonly WikipediaPage[][];
-  readonly sourceFriendlyName: string;
-  readonly targetFriendlyName: string;
+  readonly sourceLabel: string;
+  readonly targetLabel: string;
   readonly isSourceRedirected: boolean;
   readonly isTargetRedirected: boolean;
 }

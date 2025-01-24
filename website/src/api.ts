@@ -3,8 +3,8 @@ import {ShortestPathsApiResponse, ShortestPathsErrorResponse, WikipediaPage} fro
 
 interface FetchShortestPathsResponse {
   readonly paths: readonly WikipediaPage[][];
-  readonly sourceFriendlyName: string;
-  readonly targetFriendlyName: string;
+  readonly sourceLabel: string;
+  readonly targetLabel: string;
   readonly isSourceRedirected: boolean;
   readonly isTargetRedirected: boolean;
 }
@@ -28,8 +28,8 @@ export async function fetchShortestPaths({
 
   return {
     paths: data.paths,
-    sourceFriendlyName: data.sourceFriendlyName,
-    targetFriendlyName: data.targetFriendlyName,
+    sourceLabel: data.sourceLabel,
+    targetLabel: data.targetLabel,
     isSourceRedirected: data.isSourceRedirected,
     isTargetRedirected: data.isTargetRedirected,
   };
