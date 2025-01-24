@@ -120,7 +120,8 @@ const ResetButton = styled(Button)`
 
 interface GraphNode extends d3.SimulationNodeDatum {
   readonly id: WikipediaPageId;
-  readonly title: string;
+  /** The friendly name of the node as displayed to the user. */
+  readonly label: string;
   readonly degree: number;
 }
 
@@ -188,7 +189,7 @@ export const ResultsGraph: React.FC<{
         if (!seenNodes.has(currentPage.id)) {
           nodesData.push({
             id: currentPage.id,
-            title: currentPage.title,
+            label: currentPage.label,
             degree: i,
           });
           seenNodes.add(currentPage.id);
@@ -297,7 +298,7 @@ export const ResultsGraph: React.FC<{
         }
       })
       .attr('y', 4)
-      .text((d) => d.title);
+      .text((d) => d.label);
 
     // Insert links between nodes.
     const links = graphSvgRef.current
@@ -326,7 +327,7 @@ export const ResultsGraph: React.FC<{
       .attr('stroke', (d) => d3.rgb(color(d.degree.toString())).darker(2).toString())
       .on('click', (_, node) => {
         // Open Wikipedia page when node is clicked.
-        window.open(getWikipediaPageUrl(node.title), '_blank');
+        window.open(getWikipediaPageUrl(node.label), '_blank');
       })
       .call(
         d3

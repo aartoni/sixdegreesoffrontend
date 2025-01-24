@@ -114,7 +114,7 @@ const ResultListItem: React.FC<{
 
   const pagesContent = path.map((page, i) => {
     if (!page) return null;
-    const {description, title, url, thumbnailUrl} = page;
+    const {description, label, url, thumbnailUrl} = page;
 
     const descriptionContent = description ? (
       <PageDescription>{description}</PageDescription>
@@ -127,7 +127,7 @@ const ResultListItem: React.FC<{
       <PageWrapper key={i} href={url} $highlightColor={highlightColor.toString()} target="_blank">
         <PageImage src={thumbnailUrl || defaultPageThumbnail} />
         <PageInnerWrapper>
-          <PageTitle>{title}</PageTitle>
+          <PageTitle>{label}</PageTitle>
           {descriptionContent}
         </PageInnerWrapper>
       </PageWrapper>

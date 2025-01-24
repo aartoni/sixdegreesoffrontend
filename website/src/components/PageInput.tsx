@@ -155,7 +155,7 @@ export const PageInput: React.FC<{
           description = description.charAt(0).toUpperCase() + description.slice(1);
           newSuggestions.push({
             id,
-            title,
+            label: title,
             description,
             thumbnailUrl: get(thumbnail, 'source'),
           });
@@ -180,10 +180,10 @@ export const PageInput: React.FC<{
         suggestions={suggestions}
         onSuggestionsFetchRequested={({value}) => debouncedLoadSuggestions(value)}
         onSuggestionsClearRequested={() => setSuggestions([])}
-        getSuggestionValue={(suggestion) => suggestion.title}
+        getSuggestionValue={(suggestion) => suggestion.label}
         renderSuggestion={(suggestion) => (
           <PageInputSuggestion
-            title={suggestion.title}
+            title={suggestion.label}
             description={suggestion.description}
             thumbnailUrl={suggestion.thumbnailUrl}
           />
