@@ -2,13 +2,13 @@ import {first, last} from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
 
+import {TOPIC} from '../resources/constants';
 import {WikipediaPage} from '../types';
 import {getNumberWithCommas} from '../utils';
 import {Button} from './common/Button';
 import {StyledTextLink} from './common/StyledTextLink';
 import {ResultsGraph} from './ResultsGraph';
 import {ResultsList} from './ResultsList';
-import { TOPIC } from '../resources/constants';
 
 const ResultsMessage = styled.div`
   width: 800px;
@@ -150,19 +150,11 @@ export const Results: React.FC<{
   const targetUrl = last(paths[0])?.url;
 
   const sourcePageLink = (
-    <StyledTextLink
-      text={sourceFriendlyName}
-      href={sourceUrl}
-      target="_blank"
-    />
+    <StyledTextLink text={sourceFriendlyName} href={sourceUrl} target="_blank" />
   );
 
   const targetPageLink = (
-    <StyledTextLink
-      text={targetFriendlyName}
-      href={targetUrl}
-      target="_blank"
-    />
+    <StyledTextLink text={targetFriendlyName} href={targetUrl} target="_blank" />
   );
 
   // No paths found.

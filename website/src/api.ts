@@ -1,9 +1,5 @@
 import {API_URL} from './resources/constants';
-import {
-  ShortestPathsApiResponse,
-  ShortestPathsErrorResponse,
-  WikipediaPage,
-} from './types';
+import {ShortestPathsApiResponse, ShortestPathsErrorResponse, WikipediaPage} from './types';
 
 interface FetchShortestPathsResponse {
   readonly paths: readonly WikipediaPage[][];

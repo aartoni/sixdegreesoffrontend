@@ -116,7 +116,9 @@ export const Loading: React.FC = () => {
         <div />
         <div />
       </LoadingIndicator>
-      <FactWrapper><span key="0">{currentFact}</span></FactWrapper>
+      <FactWrapper>
+        <span key="0">{currentFact}</span>
+      </FactWrapper>
     </Wrapper>
   );
 };

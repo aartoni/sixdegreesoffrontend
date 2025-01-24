@@ -4,6 +4,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 
 import {fetchShortestPaths} from '../api';
+import {TOPIC} from '../resources/constants';
 import {WikipediaPage} from '../types';
 import {getRandomPageTitle} from '../utils';
 import {Button} from './common/Button';
@@ -13,7 +14,6 @@ import {NavLinks} from './NavLinks';
 import {PageInput} from './PageInput';
 import {Results} from './Results';
 import {SwapInputValuesButton} from './SwapInputValuesButton';
-import { TOPIC } from '../resources/constants';
 
 interface ShortestPathsState {
   readonly paths: readonly WikipediaPage[][];
@@ -141,8 +141,12 @@ export const Home: React.FC = () => {
 
   // Initialize the source and target page titles from the URL.
   const searchParamsFromUrl = new URLSearchParams(location.search);
-  const [sourceFriendlyName, setSourceFriendlyName] = useState(searchParamsFromUrl.get('source') || '');
-  const [targetFriendlyName, setTargetFriendlyName] = useState(searchParamsFromUrl.get('target') || '');
+  const [sourceFriendlyName, setSourceFriendlyName] = useState(
+    searchParamsFromUrl.get('source') || ''
+  );
+  const [targetFriendlyName, setTargetFriendlyName] = useState(
+    searchParamsFromUrl.get('target') || ''
+  );
 
   const [sourcePagePlaceholderText, setSourcePagePlaceholderText] = useState(getRandomPageTitle());
   const [targetPagePlaceholderText, setTargetPagePlaceholderText] = useState(getRandomPageTitle());
