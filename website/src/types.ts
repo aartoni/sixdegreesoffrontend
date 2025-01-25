@@ -27,3 +27,8 @@ export interface BlogPostInfo {
   readonly author: string;
   readonly description: string;
 }
+
+export interface HomeLink {
+  readonly href: string;
+  readonly name: string;
+}

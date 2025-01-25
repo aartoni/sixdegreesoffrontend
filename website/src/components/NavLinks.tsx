@@ -1,6 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import styled, {css} from 'styled-components';
+
+import {HOME_LINKS} from '../resources/constants';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -66,20 +67,17 @@ const TextLink = styled.a`
   ${linkStyles}
 `;
 
-const TextLinkInternal = styled(Link)`
-  ${linkStyles}
-`;
-
 export const NavLinks: React.FC<{
   readonly handleOpenModal: () => void;
 }> = ({handleOpenModal}) => {
+  const extraLinks = HOME_LINKS.map(({href, name}) => <TextLink href={href}>{name}</TextLink>);
+
   return (
     <Wrapper>
       <TextLink href="#" onClick={() => handleOpenModal()}>
         About
       </TextLink>
-      <TextLinkInternal to="/blog">Blog</TextLinkInternal>
-      <TextLink href="https://github.com/jwngr/sdow">GitHub</TextLink>
+      {extraLinks}
     </Wrapper>
   );
 };
