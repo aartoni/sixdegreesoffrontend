@@ -5,8 +5,8 @@ import {HomeLink} from '../types';
 export const API_URL = import.meta.env.VITE_API_URL;
 export const THIRD_PARTY_API_URL = import.meta.env.VITE_THIRD_PARTY_API_URL;
 
-const homeLinkHrefs = import.meta.env.VITE_HOME_LINK_HREFS.split(",");
-const homeLinkNames = import.meta.env.VITE_HOME_LINK_NAMES.split(",");
+const homeLinkHrefs = import.meta.env.VITE_HOME_LINK_HREFS?.split(",") ?? [];
+const homeLinkNames = import.meta.env.VITE_HOME_LINK_NAMES?.split(",") ?? [];
 export const HOME_LINKS: HomeLink[] = [];
 
 if (homeLinkHrefs.length === homeLinkNames.length) {
