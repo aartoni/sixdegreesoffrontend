@@ -5,12 +5,12 @@ import {HomeLink} from '../types';
 export const API_URL = import.meta.env.VITE_API_URL;
 export const THIRD_PARTY_API_URL = import.meta.env.VITE_THIRD_PARTY_API_URL;
 
-const homeLinkHrefs = import.meta.env.VITE_HOME_LINK_HREFS?.split(",") ?? [];
+const homeLinkRefs = import.meta.env.VITE_HOME_LINK_REFS?.split(",") ?? [];
 const homeLinkNames = import.meta.env.VITE_HOME_LINK_NAMES?.split(",") ?? [];
 export const HOME_LINKS: HomeLink[] = [];
 
-if (homeLinkHrefs.length === homeLinkNames.length) {
-  zip(homeLinkHrefs, homeLinkNames)
+if (homeLinkRefs.length === homeLinkNames.length) {
+  zip(homeLinkRefs, homeLinkNames)
     .map(([href, name]) => ({href, name}) as HomeLink)
     .forEach((entry) => HOME_LINKS.push(entry));
 }
