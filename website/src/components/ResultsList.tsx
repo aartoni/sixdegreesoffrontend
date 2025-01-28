@@ -4,7 +4,7 @@ import LazyLoad from 'react-lazyload';
 import styled from 'styled-components';
 
 import defaultPageThumbnail from '../images/defaultPageThumbnail.png';
-import {WikipediaPage} from '../types';
+import {Node} from '../types';
 
 const ResultsListWrapper = styled.div`
   margin: 0 auto;
@@ -108,7 +108,7 @@ const PageDescription = styled.p`
 `;
 
 const ResultListItem: React.FC<{
-  readonly path: readonly WikipediaPage[];
+  readonly path: readonly Node[];
 }> = ({path}) => {
   const color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -138,7 +138,7 @@ const ResultListItem: React.FC<{
 };
 
 export const ResultsList: React.FC<{
-  readonly paths: readonly WikipediaPage[][];
+  readonly paths: readonly Node[][];
 }> = ({paths}) => {
   const maxResultsToDisplay = 50;
   const numHiddenPaths = paths.length - maxResultsToDisplay;

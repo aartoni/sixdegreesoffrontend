@@ -1,32 +1,32 @@
 import clone from 'lodash/clone';
 
-import pageTitles from './resources/pageTitles.json';
-import wikipediaFacts from './resources/wikipediaFacts.json';
+import facts from './resources/facts.json';
+import suggestions from './resources/suggestions.json';
 
-export const getWikipediaPageUrl = (pageTitle: string): string => {
+export const getNodeUrl = (pageTitle: string): string => {
   const baseUrl = 'https://en.wikipedia.org/wiki/';
   const sanitizedPageTitle = pageTitle.replace(/ /g, '_');
   return `${baseUrl}${encodeURIComponent(sanitizedPageTitle)}`;
 };
 
-let unusedPageTitles: string[] = [];
-export const getRandomPageTitle = (): string => {
-  if (unusedPageTitles.length === 0) {
-    unusedPageTitles = clone(pageTitles);
+let unusedSuggestions: string[] = [];
+export const getRandomSuggestion = (): string => {
+  if (unusedSuggestions.length === 0) {
+    unusedSuggestions = clone(suggestions);
   }
 
-  const indexToRemove = Math.floor(Math.random() * unusedPageTitles.length);
-  return unusedPageTitles.splice(indexToRemove, 1)[0];
+  const indexToRemove = Math.floor(Math.random() * unusedSuggestions.length);
+  return unusedSuggestions.splice(indexToRemove, 1)[0];
 };
 
-let unusedWikipediaFacts: string[] = [];
-export const getRandomWikipediaFact = (): string => {
-  if (unusedWikipediaFacts.length === 0) {
-    unusedWikipediaFacts = clone(wikipediaFacts);
+let unusedFacts: string[] = [];
+export const getRandomFact = (): string => {
+  if (unusedFacts.length === 0) {
+    unusedFacts = clone(facts);
   }
 
-  const indexToRemove = Math.floor(Math.random() * unusedWikipediaFacts.length);
-  return unusedWikipediaFacts.splice(indexToRemove, 1)[0];
+  const indexToRemove = Math.floor(Math.random() * unusedFacts.length);
+  return unusedFacts.splice(indexToRemove, 1)[0];
 };
 
 export const getNumberWithCommas = (val: number): string => {

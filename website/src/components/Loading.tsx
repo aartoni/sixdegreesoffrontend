@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-import {getRandomWikipediaFact} from '../utils';
+import {getRandomFact} from '../utils';
 
 const Wrapper = styled.div`
   width: 700px;
@@ -99,11 +99,11 @@ const LoadingIndicator = styled.div`
 `;
 
 export const Loading: React.FC = () => {
-  const [currentFact, setCurrentFact] = useState(getRandomWikipediaFact());
+  const [currentFact, setCurrentFact] = useState(getRandomFact());
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentFact(getRandomWikipediaFact());
+      setCurrentFact(getRandomFact());
     }, 7_000);
     return () => clearInterval(interval);
   }, []);

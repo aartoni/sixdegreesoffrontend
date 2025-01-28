@@ -5,8 +5,8 @@ import range from 'lodash/range';
 import React, {useCallback, useEffect, useMemo, useRef} from 'react';
 import styled from 'styled-components';
 
-import {WikipediaPage, WikipediaPageId} from '../types';
-import {getWikipediaPageUrl} from '../utils';
+import {Node, NodeId} from '../types';
+import {getNodeUrl} from '../utils';
 import {Button} from './common/Button';
 
 const DEFAULT_CHART_HEIGHT = 600;
@@ -119,7 +119,7 @@ const ResetButton = styled(Button)`
 `;
 
 interface GraphNode extends d3.SimulationNodeDatum {
-  readonly id: WikipediaPageId;
+  readonly id: NodeId;
   /** The friendly name of the node as displayed to the user. */
   readonly label: string;
   readonly degree: number;
@@ -131,7 +131,7 @@ interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
 }
 
 const GraphLegend: React.FC<{
-  readonly paths: readonly WikipediaPage[][];
+  readonly paths: readonly Node[][];
   readonly color: d3.ScaleOrdinal<string, string>;
 }> = ({paths, color}) => {
   const labels = map(range(0, paths[0].length), (i) => {
@@ -163,7 +163,7 @@ const GraphLegend: React.FC<{
 };
 
 export const ResultsGraph: React.FC<{
-  readonly paths: readonly WikipediaPage[][];
+  readonly paths: readonly Node[][];
 }> = ({paths}) => {
   const graphRef = useRef<SVGSVGElement | null>(null);
   const simulationRef = useRef<d3.Simulation<GraphNode, GraphLink> | null>(null);
@@ -179,12 +179,12 @@ export const ResultsGraph: React.FC<{
   }, [graphWrapperSizeRef]);
 
   const getGraphData = useCallback(() => {
-    const seenNodes = new Set<WikipediaPageId>();
+    const seenNodes = new Set<NodeId>();
     const nodesData: GraphNode[] = [];
     const linksData: GraphLink[] = [];
 
     paths.forEach((path) => {
-      let previousPageId: WikipediaPageId | null = null;
+      let previousPageId: NodeId | null = null;
       path.forEach((currentPage, i) => {
         if (!seenNodes.has(currentPage.id)) {
           nodesData.push({
@@ -326,8 +326,8 @@ export const ResultsGraph: React.FC<{
       .attr('fill', (d) => color(d.degree.toString()))
       .attr('stroke', (d) => d3.rgb(color(d.degree.toString())).darker(2).toString())
       .on('click', (_, node) => {
-        // Open Wikipedia page when node is clicked.
-        window.open(getWikipediaPageUrl(node.label), '_blank');
+        // Open webpage when node is clicked.
+        window.open(getNodeUrl(node.label), '_blank');
       })
       .call(
         d3
@@ -388,7 +388,7 @@ export const ResultsGraph: React.FC<{
 
       <Instructions>
         <p>Drag to pan. Scroll to zoom.</p>
-        <p>Click node to open Wikipedia page.</p>
+        <p>Click node to open its webpage.</p>
       </Instructions>
 
       <ResetButton onClick={resetGraph}>

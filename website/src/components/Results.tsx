@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {TOPIC} from '../resources/constants';
-import {WikipediaPage} from '../types';
+import {Node} from '../types';
 import {getNumberWithCommas} from '../utils';
 import {Button} from './common/Button';
 import {StyledTextLink} from './common/StyledTextLink';
@@ -132,7 +132,7 @@ const RedirectWarning: React.FC<{
 };
 
 export const Results: React.FC<{
-  readonly paths: readonly WikipediaPage[][];
+  readonly paths: readonly Node[][];
   readonly sourceLabel: string;
   readonly targetLabel: string;
   readonly isSourceRedirected: boolean;

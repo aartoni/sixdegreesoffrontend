@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 import {fetchShortestPaths} from '../api';
 import {TOPIC} from '../resources/constants';
-import {WikipediaPage} from '../types';
-import {getRandomPageTitle} from '../utils';
+import {Node} from '../types';
+import {getRandomSuggestion} from '../utils';
 import {Button} from './common/Button';
 import {Logo} from './common/Logo';
 import {Loading} from './Loading';
@@ -16,7 +16,7 @@ import {Results} from './Results';
 import {SwapInputValuesButton} from './SwapInputValuesButton';
 
 interface ShortestPathsState {
-  readonly paths: readonly WikipediaPage[][];
+  readonly paths: readonly Node[][];
   readonly sourceLabel: string;
   readonly targetLabel: string;
   readonly isSourceRedirected: boolean;
@@ -144,8 +144,8 @@ export const Home: React.FC = () => {
   const [sourceLabel, setSourceLabel] = useState(searchParamsFromUrl.get('source') ?? '');
   const [targetLabel, setTargetLabel] = useState(searchParamsFromUrl.get('target') ?? '');
 
-  const [sourcePagePlaceholderText, setSourcePagePlaceholderText] = useState(getRandomPageTitle());
-  const [targetPagePlaceholderText, setTargetPagePlaceholderText] = useState(getRandomPageTitle());
+  const [sourcePlaceholderText, setSourcePlaceholderText] = useState(getRandomSuggestion());
+  const [targetPlaceholderText, setTargetPlaceholderText] = useState(getRandomSuggestion());
 
   const [shortestPathsState, setShortestPathsState] = useState<ShortestPathsState | null>(null);
   const [isFetchingResults, setIsFetchingResults] = useState(false);
@@ -161,17 +161,17 @@ export const Home: React.FC = () => {
     setIsFetchingResults(true);
     setErrorMessage(null);
 
-    const actualSourcePageTitle = sourceLabel || sourcePagePlaceholderText;
-    const actualTargetPageTitle = targetLabel || targetPagePlaceholderText;
+    const actualSourceLabel = sourceLabel || sourcePlaceholderText;
+    const actualTargetLabel = targetLabel || targetPlaceholderText;
 
     try {
       // Update the URL to reflect the new search.
       const searchParams = new URLSearchParams();
-      searchParams.set('source', actualSourcePageTitle);
-      searchParams.set('target', actualTargetPageTitle);
+      searchParams.set('source', actualSourceLabel);
+      searchParams.set('target', actualTargetLabel);
       navigate({search: searchParams.toString()});
 
-      const response = await fetchShortestPaths(actualSourcePageTitle, actualTargetPageTitle);
+      const response = await fetchShortestPaths(actualSourceLabel, actualTargetLabel);
 
       setShortestPathsState({
         paths: response.paths,
@@ -202,7 +202,7 @@ export const Home: React.FC = () => {
     }
 
     setIsFetchingResults(false);
-  }, [navigate, sourcePagePlaceholderText, sourceLabel, targetPagePlaceholderText, targetLabel]);
+  }, [navigate, sourcePlaceholderText, sourceLabel, targetPlaceholderText, targetLabel]);
 
   return (
     <div>
@@ -249,8 +249,8 @@ export const Home: React.FC = () => {
         <PageInput
           title={sourceLabel}
           setTitle={setSourceLabel}
-          placeholderText={sourcePagePlaceholderText}
-          setPlaceholderText={setSourcePagePlaceholderText}
+          placeholderText={sourcePlaceholderText}
+          setPlaceholderText={setSourcePlaceholderText}
         />
         <SwapInputValuesButton
           canSwap={targetLabel.trim().length > 0 && sourceLabel.trim().length > 0}
@@ -262,8 +262,8 @@ export const Home: React.FC = () => {
         <PageInput
           title={targetLabel}
           setTitle={setTargetLabel}
-          placeholderText={targetPagePlaceholderText}
-          setPlaceholderText={setTargetPagePlaceholderText}
+          placeholderText={targetPlaceholderText}
+          setPlaceholderText={setTargetPlaceholderText}
         />
       </InputFlexContainer>
 
@@ -271,10 +271,10 @@ export const Home: React.FC = () => {
         <SearchButtonWrapper
           onClick={async () => {
             if (sourceLabel.trim().length === 0) {
-              setSourceLabel(sourcePagePlaceholderText);
+              setSourceLabel(sourcePlaceholderText);
             }
             if (targetLabel.trim().length === 0) {
-              setTargetLabel(targetPagePlaceholderText);
+              setTargetLabel(targetPlaceholderText);
             }
 
             await handleFetchShortestPaths();

@@ -7,11 +7,11 @@ import Autosuggest from 'react-autosuggest';
 import styled from 'styled-components';
 
 import {THIRD_PARTY_API_URL, USER_AGENT} from '../resources/constants';
-import {WikipediaPage} from '../types';
-import {getRandomPageTitle} from '../utils';
+import {Node} from '../types';
+import {getRandomSuggestion} from '../utils';
 import {PageInputSuggestion} from './PageInputSuggestion';
 
-type PageSuggestion = Required<Omit<WikipediaPage, 'url'>>;
+type PageSuggestion = Required<Omit<Node, 'url'>>;
 
 const AutosuggestWrapper = styled.div`
   width: 500px;
@@ -111,7 +111,7 @@ export const PageInput: React.FC<{
     if (title !== '') return;
 
     const intervalId = setInterval(() => {
-      setPlaceholderText(getRandomPageTitle());
+      setPlaceholderText(getRandomSuggestion());
     }, 5_000);
 
     return () => clearInterval(intervalId);
@@ -163,7 +163,7 @@ export const PageInput: React.FC<{
       });
       setSuggestions(filter(newSuggestions));
     } catch (error) {
-      const defaultErrorMessage = 'Failed to fetch page suggestions from Wikipedia API.';
+      const defaultErrorMessage = 'Failed to fetch page suggestions from the API.';
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (window as any).ga('send', 'exception', {
         exDescription: get(error, 'response.data.error', defaultErrorMessage),

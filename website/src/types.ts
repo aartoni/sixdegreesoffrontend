@@ -1,7 +1,7 @@
-export type WikipediaPageId = string;
+export type NodeId = string;
 
-export interface WikipediaPage {
-  readonly id: WikipediaPageId;
+export interface Node {
+  readonly id: NodeId;
   readonly label: string;
   readonly url: string;
   readonly description?: string;
@@ -9,7 +9,7 @@ export interface WikipediaPage {
 }
 
 export interface ShortestPathsApiResponse {
-  readonly paths: readonly WikipediaPage[][];
+  readonly paths: readonly Node[][];
   readonly sourceLabel: string;
   readonly targetLabel: string;
   readonly isSourceRedirected: boolean;
