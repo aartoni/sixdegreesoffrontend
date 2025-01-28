@@ -19,7 +19,7 @@ services:
   db:  # ...
   frontend:
     build:
-      context: ./frontend
+      context: ../frontend
       dockerfile: Dockerfile
 ```
 
