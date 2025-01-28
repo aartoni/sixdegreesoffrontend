@@ -33,7 +33,11 @@ Finally, changing the variables in `.env` and build the Docker image. The easies
   - use a GET request instead of a POST to retrieve the paths
 - larger server responses in exchange for readability
   - embeds the data of each node in every path instead of only storing their IDs and and storing a single copy of each node into a map (this will likely change in the future)
-- Google Analytics removed;
+- less dependencies (e.g., `react-helmet`);
+- get rid of some "features":
+  - blogging: consider building it independently and linking via `VITE_HOME_LINKS_*` instead;
+  - newsletter: consider providing an RSS feed instead;
+  - Google Analytics: consider forking instead;
 
 ## Contributing
 

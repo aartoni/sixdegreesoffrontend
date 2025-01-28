@@ -20,14 +20,6 @@ export interface ShortestPathsErrorResponse {
   readonly error: string;
 }
 
-export interface BlogPostInfo {
-  readonly id: string;
-  readonly date: string;
-  readonly title: string;
-  readonly author: string;
-  readonly description: string;
-}
-
 export interface HomeLink {
   readonly href: string;
   readonly name: string;
