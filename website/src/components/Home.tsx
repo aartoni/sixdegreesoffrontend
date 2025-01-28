@@ -171,10 +171,7 @@ export const Home: React.FC = () => {
       searchParams.set('target', actualTargetPageTitle);
       navigate({search: searchParams.toString()});
 
-      const response = await fetchShortestPaths({
-        source: actualSourcePageTitle,
-        target: actualTargetPageTitle,
-      });
+      const response = await fetchShortestPaths(actualSourcePageTitle, actualTargetPageTitle);
 
       setShortestPathsState({
         paths: response.paths,

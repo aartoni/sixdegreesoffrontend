@@ -9,13 +9,10 @@ interface FetchShortestPathsResponse {
   readonly isTargetRedirected: boolean;
 }
 
-export async function fetchShortestPaths({
-  source,
-  target,
-}: {
-  readonly source: string;
-  readonly target: string;
-}): Promise<FetchShortestPathsResponse> {
+export async function fetchShortestPaths(
+  source: string,
+  target: string
+): Promise<FetchShortestPathsResponse> {
   const params = new URLSearchParams({source, target});
   const response = await fetch(`${API_URL}/paths?${params.toString()}`);
 
