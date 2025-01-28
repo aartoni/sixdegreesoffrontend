@@ -32,7 +32,3 @@ export const getRandomWikipediaFact = (): string => {
 export const getNumberWithCommas = (val: number): string => {
   return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
-
-export function assertNever(x: never): never {
-  throw new Error(`Unexpected object: ${x}`);
-}

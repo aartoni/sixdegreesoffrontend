@@ -132,7 +132,7 @@ interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
 
 const GraphLegend: React.FC<{
   readonly paths: readonly WikipediaPage[][];
-  readonly color: d3.ScaleOrdinal<string, string, never>;
+  readonly color: d3.ScaleOrdinal<string, string>;
 }> = ({paths, color}) => {
   const labels = map(range(0, paths[0].length), (i) => {
     if (i === 0 && paths[0].length === 1) {

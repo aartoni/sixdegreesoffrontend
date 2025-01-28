@@ -151,7 +151,7 @@ export const PageInput: React.FC<{
       forEach(pageResults, (all) => {
         const {ns, id, title, terms, thumbnail} = all;
         if (ns === 0) {
-          let description = get(terms, 'description.0', '');
+          let description = get(terms, 'description.0', '') as string;
           description = description.charAt(0).toUpperCase() + description.slice(1);
           newSuggestions.push({
             id,

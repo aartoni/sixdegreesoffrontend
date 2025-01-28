@@ -16,6 +16,6 @@ if (homeLinkRefs.length === homeLinkNames.length) {
 }
 
 const AUTHOR_EMAIL = import.meta.env.VITE_AUTHOR_EMAIL;
-const URL = import.meta.env.VITE_PUBLIC_URL;
-export const TOPIC = import.meta.env.VITE_APP_TOPIC;
+const URL = import.meta.env.VITE_URL;
+export const TOPIC = import.meta.env.VITE_TOPIC;
 export const USER_AGENT = `Six Degrees of ${TOPIC}/1.0 (${URL}; ${AUTHOR_EMAIL})`;
