@@ -141,8 +141,8 @@ export const Home: React.FC = () => {
 
   // Initialize the source and target page titles from the URL.
   const searchParamsFromUrl = new URLSearchParams(location.search);
-  const [sourceLabel, setSourceLabel] = useState(searchParamsFromUrl.get('source') || '');
-  const [targetLabel, setTargetLabel] = useState(searchParamsFromUrl.get('target') || '');
+  const [sourceLabel, setSourceLabel] = useState(searchParamsFromUrl.get('source') ?? '');
+  const [targetLabel, setTargetLabel] = useState(searchParamsFromUrl.get('target') ?? '');
 
   const [sourcePagePlaceholderText, setSourcePagePlaceholderText] = useState(getRandomPageTitle());
   const [targetPagePlaceholderText, setTargetPagePlaceholderText] = useState(getRandomPageTitle());
