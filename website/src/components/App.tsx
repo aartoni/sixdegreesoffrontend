@@ -23,8 +23,6 @@ export const App: React.FC = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* Redirect unmatched routes to home page, replacing history stack. */}
-            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
       </>
