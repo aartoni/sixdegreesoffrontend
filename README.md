@@ -38,6 +38,7 @@ Finally, changing the variables in `.env` and build the Docker image. The easies
   - blogging: consider building it independently and linking via `VITE_HOME_LINKS_*` instead;
   - newsletter: consider providing an RSS feed instead;
   - Twitter share button: users can still share by copying the URL;
+  - automatic redirect: allows customization via reverse proxy;
   - Google Analytics: consider forking instead;
 
 ## Contributing
