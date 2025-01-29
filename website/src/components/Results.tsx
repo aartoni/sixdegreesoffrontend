@@ -54,7 +54,7 @@ const TwitterBirdSvg = styled.svg`
 `;
 
 /**
- * Adds some character to the results by rendering a snarky comment for certain degress of
+ * Adds some character to the results by rendering a snarky comment for certain degrees of
  * separation.
  */
 const SnarkyContent: React.FC<{
